@@ -1,3 +1,5 @@
+'use strict';
+
 import test from 'ava';
 import postcssUnits from './';
 import postcss from 'postcss';
