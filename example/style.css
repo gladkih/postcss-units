@@ -1,0 +1,12 @@
+.title {
+	margin: -10px .5em;
+	padding: 15px;
+	font-size: rem(14px);
+	line-height: rem(20);
+}
+
+.logo {
+	padding-left: 10px;
+	margin-top: em(19);
+	font-size: 1em;
+}

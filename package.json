@@ -1,0 +1,40 @@
+{
+  "name": "postcss-units",
+  "version": "1.0.0",
+  "description": "PostCSS plugin to conver px to another units.",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gladkih/postcss-units.git"
+  },
+  "keywords": [
+    "css",
+    "postcss",
+    "postcss-plugin",
+    "px",
+    "rem",
+    "em"
+  ],
+  "author": "Maxim Gladkih",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gladkih/postcss-units/issues"
+  },
+  "homepage": "https://github.com/gladkih/postcss-units#readme",
+  "dependencies": {
+    "postcss": "^5.0.14",
+    "extend": "^3.0.0"
+  },
+  "devDependencies": {
+    "ava": "^0.11.0",
+    "eslint": "^1.10.3"
+  },
+  "ava": {
+    "failFast": true,
+    "serial": true,
+    "verbose": true
+  }
+}

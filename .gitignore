@@ -1,0 +1,26 @@
+# OSX
+.DS_Store
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+/build
+# Dependency directory
+node_modules
+
+# Windows image file caches
+Thumbs.db
+
+*.css.map
+
+.idea
+
+# Logs
+logs
+
+*.log
+npm-debug.log*
