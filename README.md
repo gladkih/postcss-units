@@ -80,7 +80,6 @@ gulp.task('css', function () {
             size: 14
         })
     ];
-
     return gulp.src(['build/static/css/**/*.css'])
         .pipe(postcss(processors))
         .pipe(gulp.dest('build/static/css'));
