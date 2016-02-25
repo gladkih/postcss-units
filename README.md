@@ -1,9 +1,9 @@
 # postcss-units
 [![Dependency Status](https://david-dm.org/gladkih/postcss-units.svg)](https://david-dm.org/gladkih/postcss-units) [![devDependency Status](https://david-dm.org/gladkih/postcss-units/dev-status.svg)](https://david-dm.org/gladkih/postcss-units#info=devDependencies) [![Build Status](https://travis-ci.org/gladkih/postcss-units.svg?branch=master)](https://travis-ci.org/gladkih/postcss-units)
 
-[PostCSS](https://github.com/postcss/postcss) plugin which generates rem or em when required
+<img align="right" width="100" height="100" title="Philosopher's stone, logo of PostCSS" src="http://postcss.github.io/postcss/logo.svg">
 
-<img align="right" width="100" height="100"      title="Philosopher's stone, logo of PostCSS"      src="http://postcss.github.io/postcss/logo.svg">
+[PostCSS](https://github.com/postcss/postcss) plugin which generates rem or em when required
 
 ## Usage
 Conversion from pixels into em or rem, depending on wrapper of value.
