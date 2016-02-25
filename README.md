@@ -1,10 +1,9 @@
 # postcss-units
 [![Dependency Status](https://david-dm.org/gladkih/postcss-units.svg)](https://david-dm.org/gladkih/postcss-units) [![devDependency Status](https://david-dm.org/gladkih/postcss-units/dev-status.svg)](https://david-dm.org/gladkih/postcss-units#info=devDependencies) [![Build Status](https://travis-ci.org/gladkih/postcss-units.svg?branch=master)](https://travis-ci.org/gladkih/postcss-units)
 
-Плагин для [PostCSS](https://github.com/postcss/postcss) который генерирует rem или em по необходимости.
-
+[PostCSS](https://github.com/postcss/postcss) plugin that generates rem em or necessary.
 ## Usage
-Конвертация из пикселей в em или rem, в зависимости от обертки значения.
+Conversion of pixels em or rem, depending on the wrapper.
 
 ```css
 // input
@@ -62,8 +61,8 @@ Type: `Object | Null`<br>Default:
 ```
 
 - `size` (Number) The `body` font size.
-- `fallback` (Number) делать fallback `rem` для старых браузеров.
-- `precision` (Array) количество цифр после запятой для `em` и `rem`.
+- `fallback` (Number) do fallback `rem` for older browsers.
+- `precision` (Array) the number of digits after the decimal point for the `em` and` rem`.
 
 ### Use with gulp-postcss
 
