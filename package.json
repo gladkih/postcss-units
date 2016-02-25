@@ -25,8 +25,9 @@
   },
   "homepage": "https://github.com/gladkih/postcss-units#readme",
   "dependencies": {
-    "postcss": "^5.0.14",
-    "extend": "^3.0.0"
+    "extend": "^3.0.0",
+    "nyc": "^5.6.0",
+    "postcss": "^5.0.16"
   },
   "devDependencies": {
     "ava": "^0.11.0",
