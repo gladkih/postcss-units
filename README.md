@@ -1,9 +1,12 @@
 # postcss-units
 [![Dependency Status](https://david-dm.org/gladkih/postcss-units.svg)](https://david-dm.org/gladkih/postcss-units) [![devDependency Status](https://david-dm.org/gladkih/postcss-units/dev-status.svg)](https://david-dm.org/gladkih/postcss-units#info=devDependencies) [![Build Status](https://travis-ci.org/gladkih/postcss-units.svg?branch=master)](https://travis-ci.org/gladkih/postcss-units)
 
-[PostCSS](https://github.com/postcss/postcss) plugin that generates rem em or necessary.
+[PostCSS](https://github.com/postcss/postcss) plugin which generates rem or em when required
+
+<img align="right" width="100" height="100"      title="Philosopher's stone, logo of PostCSS"      src="http://postcss.github.io/postcss/logo.svg">
+
 ## Usage
-Conversion of pixels em or rem, depending on the wrapper.
+Conversion from pixels into em or rem, depending on wrapper of value.
 
 ```css
 // input
@@ -61,8 +64,8 @@ Type: `Object | Null`<br>Default:
 ```
 
 - `size` (Number) The `body` font size.
-- `fallback` (Number) do fallback `rem` for older browsers.
-- `precision` (Array) the number of digits after the decimal point for the `em` and` rem`.
+- `fallback` (Number) perform fallback `rem` for old browsers.
+- `precision` (Array) quantity of digits after decimal point for `em` and `rem`.
 
 ### Use with gulp-postcss
 
@@ -85,4 +88,4 @@ gulp.task('css', function () {
 ```
 
 ## License
-MIT ©[Maxim Gladkih](https://gladkih.su)
+MIT © [Maxim Gladkih](https://gladkih.su)
