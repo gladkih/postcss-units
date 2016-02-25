@@ -44,9 +44,9 @@ function postcssUnits(options) {
 }
 
 /**
- * * Замена em(«число») на «число»em
- * @param decl — параметры замены
- * @param options
+ * Change from em(«number») to «number»em
+ * @param decl
+ * @param options - replace options
  */
 function typeEm(decl, options) {
   var size = numberAfterPoint(options.elementSize / options.size, options.precision);
@@ -54,10 +54,10 @@ function typeEm(decl, options) {
 }
 
 /**
- * Замена rem(«число») на «число»rem
+ * Change from rem(«number») to «number»rem
  * @param decl
- * @param options — параметры замены
- * @param ruleNumber — номер правила по порядку
+ * @param options - replace options
+ * @param ruleNumber - number of rules in order
  */
 function typeRem(decl, options, ruleNumber) {
   var size = numberAfterPoint(options.elementSize / options.size, options.precision);
@@ -74,9 +74,9 @@ function typeRem(decl, options, ruleNumber) {
 
 /**
  * The function for rounding of numbers after the decimal point
- * param Number the original number
- * param Precision how many decimal places should be
- * returns {Number} final number
+ * @param number the original number
+ * @param precision how many decimal places should be
+ * @returns {number} final number
  */
 function numberAfterPoint(number, precision) {
   var multiplier = Math.pow(10, precision + 1);
