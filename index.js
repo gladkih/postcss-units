@@ -35,8 +35,6 @@ function postcssUnits(options) {
           case 'em':
             typeEm(decl, options);
             break;
-          default:
-            break;
         }
       }
     });
@@ -49,7 +47,7 @@ function postcssUnits(options) {
  * @param options - replace options
  */
 function typeEm(decl, options) {
-  var size = numberAfterPoint(options.elementSize / options.size, options.precision);
+  var size = getSize(options);
   decl.value = decl.value.replace(regular, size + 'em');
 }
 
@@ -60,16 +58,23 @@ function typeEm(decl, options) {
  * @param ruleNumber - number of rules in order
  */
 function typeRem(decl, options, ruleNumber) {
-  var size = numberAfterPoint(options.elementSize / options.size, options.precision);
+  var size = getSize(options);
   var value = decl.value.replace(regular, size + 'rem');
 
   if (options.fallback) {
     decl.value = decl.value.replace(regular, options.elementSize + 'px');
-    decl.parent.insertAfter(ruleNumber, decl.clone({value: value}));
+    decl.parent.insertAfter(ruleNumber, decl.clone({
+      value: value
+    }));
   } else {
     decl.value = value;
   }
 
+}
+
+function getSize(options) {
+  var size = options.elementSize / options.size;
+  return numberAfterPoint(size, options.precision);
 }
 
 /**

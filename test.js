@@ -8,8 +8,8 @@ function runPlugin(t, input, output, options) {
   options = options || {};
   return postcss([postcssUnits(options)]).process(input)
     .then(function(result) {
-      t.same(result.css, output);
-      t.same(result.warnings().length, 0);
+      t.is(result.css, output);
+      t.is(result.warnings().length, 0);
     });
 }
 
