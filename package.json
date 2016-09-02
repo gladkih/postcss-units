@@ -1,6 +1,6 @@
 {
   "name": "postcss-units",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "PostCSS plugin to conver px to another units.",
   "main": "index.js",
   "files": [
