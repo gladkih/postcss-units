@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "PostCSS plugin to conver px to another units.",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
-    "test": "ava test.js"
+    "report": "nyc report --reporter=html",
+    "test": "nyc ava test.js",
+    "posttest": "eslint *.js"
   },
   "repository": {
     "type": "git",
@@ -26,12 +31,13 @@
   "homepage": "https://github.com/gladkih/postcss-units#readme",
   "dependencies": {
     "extend": "^3.0.0",
-    "nyc": "^5.6.0",
     "postcss": "^5.0.16"
   },
   "devDependencies": {
-    "ava": "^0.12.0",
-    "eslint": "^2.2.0"
+    "ava": "^0.16.0",
+    "eslint": "^2.2.0",
+    "eslint-config-postcss": "^2.0.2",
+    "nyc": "^8.1.0"
   },
   "ava": {
     "failFast": true,
