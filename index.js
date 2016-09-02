@@ -25,15 +25,15 @@ function postcssUnits(options) {
       var type;
 
       if (parsing) {
-        options.elementSize = parsing[0].match(regularNumber)[0];
+        var number = parsing[0].match(regularNumber)[0];
         type = parsing[0].match(regularType)[0];
 
         switch (type) {
           case 'rem':
-            typeRem(decl, options, i);
+            typeRem(decl, number, options, i);
             break;
           case 'em':
-            typeEm(decl, options);
+            typeEm(decl, number, options);
             break;
         }
       }
@@ -46,8 +46,8 @@ function postcssUnits(options) {
  * @param decl
  * @param options - replace options
  */
-function typeEm(decl, options) {
-  var size = getSize(options);
+function typeEm(decl, number, options) {
+  var size = getSize(number, options);
   decl.value = decl.value.replace(regular, size + 'em');
 }
 
@@ -57,12 +57,12 @@ function typeEm(decl, options) {
  * @param options - replace options
  * @param ruleNumber - number of rules in order
  */
-function typeRem(decl, options, ruleNumber) {
-  var size = getSize(options);
+function typeRem(decl, number, options, ruleNumber) {
+  var size = getSize(number, options);
   var value = decl.value.replace(regular, size + 'rem');
 
   if (options.fallback) {
-    decl.value = decl.value.replace(regular, options.elementSize + 'px');
+    decl.value = decl.value.replace(regular, number + 'px');
     decl.parent.insertAfter(ruleNumber, decl.clone({
       value: value
     }));
@@ -72,9 +72,8 @@ function typeRem(decl, options, ruleNumber) {
 
 }
 
-function getSize(options) {
-  var size = options.elementSize / options.size;
-  return numberAfterPoint(size, options.precision);
+function getSize(number, options) {
+  return numberAfterPoint(number / options.size, options.precision);
 }
 
 /**
