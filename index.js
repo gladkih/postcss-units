@@ -19,7 +19,7 @@ function postcssUnits(options) {
 
   return function(css) {
 
-    css.walkDecls(function(decl, i) {
+    css.walkDecls(function(decl) {
       var value = decl.value;
       var parsing = value.match(regular);
       var type;
@@ -30,7 +30,7 @@ function postcssUnits(options) {
 
         switch (type) {
           case 'rem':
-            typeRem(decl, number, options, i);
+            typeRem(decl, number, options);
             break;
           case 'em':
             typeEm(decl, number, options);
@@ -55,21 +55,17 @@ function typeEm(decl, number, options) {
  * Change from rem(«number») to «number»rem
  * @param decl
  * @param options - replace options
- * @param ruleNumber - number of rules in order
  */
-function typeRem(decl, number, options, ruleNumber) {
+function typeRem(decl, number, options) {
   var size = getSize(number, options);
-  var value = decl.value.replace(regular, size + 'rem');
 
   if (options.fallback) {
-    decl.value = decl.value.replace(regular, number + 'px');
-    decl.parent.insertAfter(ruleNumber, decl.clone({
-      value: value
-    }));
-  } else {
-    decl.value = value;
+    decl.cloneBefore({
+      value: decl.value.replace(regular, number + 'px')
+    });
   }
 
+  decl.value = decl.value.replace(regular, size + 'rem');
 }
 
 function getSize(number, options) {
