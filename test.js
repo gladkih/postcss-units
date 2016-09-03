@@ -25,6 +25,12 @@ test('Change em without px', function(t) {
   return runPlugin(t, input, output);
 });
 
+test('Do not change em with pt', function(t) {
+  var input = 'font-size: em(20pt);';
+  var output = 'font-size: em(20pt);';
+  return runPlugin(t, input, output);
+});
+
 test('Change rem with px', function(t) {
   var input = 'font-size: rem(20px);';
   var output = 'font-size: 1.25rem;';
@@ -34,6 +40,12 @@ test('Change rem with px', function(t) {
 test('Change rem without px', function(t) {
   var input = 'font-size: rem(20);';
   var output = 'font-size: 1.25rem;';
+  return runPlugin(t, input, output);
+});
+
+test('Do not change rem with pt', function(t) {
+  var input = 'font-size: rem(20pt);';
+  var output = 'font-size: rem(20pt);';
   return runPlugin(t, input, output);
 });
 
@@ -48,7 +60,7 @@ test('Change with fallback', function(t) {
     fallback: true
   };
   var input = 'font-size: rem(20px);';
-  var output = 'font-size: 20px;font-size: 1.25rem;';
+  var output = 'font-size: 20px;\nfont-size: 1.25rem;';
   return runPlugin(t, input, output, options);
 });
 

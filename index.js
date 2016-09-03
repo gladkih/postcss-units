@@ -19,21 +19,21 @@ function postcssUnits(options) {
 
   return function(css) {
 
-    css.walkDecls(function(decl, i) {
+    css.walkDecls(function(decl) {
       var value = decl.value;
       var parsing = value.match(regular);
       var type;
 
       if (parsing) {
-        options.elementSize = parsing[0].match(regularNumber)[0];
+        var number = parsing[0].match(regularNumber)[0];
         type = parsing[0].match(regularType)[0];
 
         switch (type) {
           case 'rem':
-            typeRem(decl, options, i);
+            typeRem(decl, number, options);
             break;
           case 'em':
-            typeEm(decl, options);
+            typeEm(decl, number, options);
             break;
         }
       }
@@ -46,8 +46,8 @@ function postcssUnits(options) {
  * @param decl
  * @param options - replace options
  */
-function typeEm(decl, options) {
-  var size = getSize(options);
+function typeEm(decl, number, options) {
+  var size = getSize(number, options);
   decl.value = decl.value.replace(regular, size + 'em');
 }
 
@@ -55,26 +55,21 @@ function typeEm(decl, options) {
  * Change from rem(«number») to «number»rem
  * @param decl
  * @param options - replace options
- * @param ruleNumber - number of rules in order
  */
-function typeRem(decl, options, ruleNumber) {
-  var size = getSize(options);
-  var value = decl.value.replace(regular, size + 'rem');
+function typeRem(decl, number, options) {
+  var size = getSize(number, options);
 
   if (options.fallback) {
-    decl.value = decl.value.replace(regular, options.elementSize + 'px');
-    decl.parent.insertAfter(ruleNumber, decl.clone({
-      value: value
-    }));
-  } else {
-    decl.value = value;
+    decl.cloneBefore({
+      value: decl.value.replace(regular, number + 'px')
+    });
   }
 
+  decl.value = decl.value.replace(regular, size + 'rem');
 }
 
-function getSize(options) {
-  var size = options.elementSize / options.size;
-  return numberAfterPoint(size, options.precision);
+function getSize(number, options) {
+  return numberAfterPoint(number / options.size, options.precision);
 }
 
 /**
