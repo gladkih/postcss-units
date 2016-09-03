@@ -1,11 +1,13 @@
 # postcss-units
-[![Dependency Status](https://david-dm.org/gladkih/postcss-units.svg)](https://david-dm.org/gladkih/postcss-units) [![devDependency Status](https://david-dm.org/gladkih/postcss-units/dev-status.svg)](https://david-dm.org/gladkih/postcss-units#info=devDependencies) [![Build Status](https://travis-ci.org/gladkih/postcss-units.svg?branch=master)](https://travis-ci.org/gladkih/postcss-units)
+
+[![Dependency Status](https://david-dm.org/gladkih/postcss-units.svg)](https://david-dm.org/gladkih/postcss-units) [![Build Status](https://travis-ci.org/gladkih/postcss-units.svg?branch=master)](https://travis-ci.org/gladkih/postcss-units)
 
 <img align="right" width="100" height="100" title="Philosopher's stone, logo of PostCSS" src="http://postcss.github.io/postcss/logo.svg">
 
 [PostCSS](https://github.com/postcss/postcss) plugin which generates rem or em when required
 
 ## Usage
+
 Conversion from pixels into em or rem, depending on wrapper of value.
 
 ```css
@@ -26,48 +28,41 @@ Conversion from pixels into em or rem, depending on wrapper of value.
 }
 ```
 
-### Example
-
 ```js
-'use strict';
-
-var fs = require('fs');
-var postcss = require('postcss');
-var postcssUnits = require('postcss-units');
-var css = fs.readFileSync('style.css', 'utf8');
-
-var options = {
-    size: 14,
-    fallback: false,
-    precision: 2
-};
-
-var resultCss = postcss(postcssUnits(options)).process(css).css;
-
-fs.writeFile('style-result.css', resultCss, function(err) {
-    if (err) {
-        throw err;
-    }
-    console.log('File written.');
-});
+postcss([
+    require('postcss-units')({
+        size: 14,
+        fallback: false,
+        precision: 2
+    })
+])
 ```
 
-### options
-Type: `Object | Null`<br>Default:
+## options
 
-```js
-{
-    size: 16,
-    fallback: false,
-    precision: 3
-}
-```
+### size
 
-- `size` (Number) The `body` font size.
-- `fallback` (Number) perform fallback `rem` for old browsers.
-- `precision` (Array) quantity of digits after decimal point for `em` and `rem`.
+Type: `Number`  
+Default: 16
 
-### Use with gulp-postcss
+The `body` font size.
+
+### fallback
+
+Type: `Boolean`  
+Default: false
+
+Perform fallback `rem` for old browsers.
+
+### precision
+
+Type: `Number`  
+Default: 3
+
+Quantity of digits after decimal point for `em` and `rem`.
+
+
+## Use with gulp-postcss
 
 ```js
 var gulp = require('gulp');
