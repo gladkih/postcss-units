@@ -4,6 +4,8 @@ var extend = require('extend');
 var postcss = require('postcss');
 var valueParser = require('postcss-value-parser');
 
+var funcExp = /(em\(|rem\()/;
+
 function postcssUnits(options) {
   options = extend({
     size: 16,
@@ -17,6 +19,10 @@ function postcssUnits(options) {
 
   return function(css) {
     css.walkDecls(function(decl) {
+      if (!funcExp.test(decl.value)) {
+        return;
+      }
+
       var fallback = false;
 
       var parsedValue = valueParser(decl.value).walk(function(node) {

@@ -49,6 +49,12 @@ test('Do not change rem with pt', function(t) {
   return runPlugin(t, input, output);
 });
 
+test('Do not change rem or em as unit', function(t) {
+  var input = 'font-size: 1.25rem;margin: 1.5em;';
+  var output = 'font-size: 1.25rem;margin: 1.5em;';
+  return runPlugin(t, input, output);
+});
+
 test('Change multiple rem or em', function(t) {
   var input = 'margin: rem(20px) em(16px);';
   var output = 'margin: 1.25rem 1em;';
