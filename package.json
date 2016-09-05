@@ -37,10 +37,10 @@
     "ava": "^0.16.0",
     "eslint": "^2.2.0",
     "eslint-config-postcss": "^2.0.2",
-    "nyc": "^8.1.0"
+    "nyc": "^8.1.0",
+    "postcss-value-parser": "^3.3.0"
   },
   "ava": {
-    "failFast": true,
     "serial": true,
     "verbose": true
   }

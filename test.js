@@ -1,8 +1,8 @@
 'use strict';
 
-import test from 'ava';
-import postcssUnits from './';
-import postcss from 'postcss';
+var test = require('ava');
+var postcssUnits = require('./');
+var postcss = require('postcss');
 
 function runPlugin(t, input, output, options) {
   options = options || {};
@@ -49,6 +49,18 @@ test('Do not change rem with pt', function(t) {
   return runPlugin(t, input, output);
 });
 
+test('Do not change rem or em as unit', function(t) {
+  var input = 'font-size: 1.25rem;margin: 1.5em;';
+  var output = 'font-size: 1.25rem;margin: 1.5em;';
+  return runPlugin(t, input, output);
+});
+
+test('Change multiple rem or em', function(t) {
+  var input = 'margin: rem(20px) em(16px);';
+  var output = 'margin: 1.25rem 1em;';
+  return runPlugin(t, input, output);
+});
+
 test('Change negative value', function(t) {
   var input = 'font-size: em(-20px);';
   var output = 'font-size: -1.25em;';
@@ -59,8 +71,8 @@ test('Change with fallback', function(t) {
   var options = {
     fallback: true
   };
-  var input = 'font-size: rem(20px);';
-  var output = 'font-size: 20px;\nfont-size: 1.25rem;';
+  var input = 'margin: rem(20px) em(12px);';
+  var output = 'margin: 20px 0.75em;\nmargin: 1.25rem 0.75em;';
   return runPlugin(t, input, output, options);
 });
 
