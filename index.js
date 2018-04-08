@@ -42,7 +42,7 @@ function postcssUnits(options) {
         node.value = size + type;
 
         if (options.fallback && type === 'rem') {
-          node.fallback = value.number + value.unit;
+          node.fallback = value.number + 'px';
           fallback = true;
         }
       });
