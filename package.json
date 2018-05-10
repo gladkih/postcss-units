@@ -30,14 +30,14 @@
   },
   "homepage": "https://github.com/gladkih/postcss-units#readme",
   "dependencies": {
-    "extend": "^3.0.0",
-    "postcss": "^5.0.16"
+    "extend": "^3.0.1",
+    "postcss": "^5.2.18"
   },
   "devDependencies": {
     "ava": "^0.16.0",
     "eslint": "^2.2.0",
     "eslint-config-postcss": "^2.0.2",
-    "nyc": "^8.1.0",
+    "nyc": "^8.4.0",
     "postcss-value-parser": "^3.3.0"
   },
   "ava": {
