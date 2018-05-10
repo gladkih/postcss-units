@@ -78,7 +78,7 @@ test('Change with fallback', function(t) {
     fallback: true
   };
   var input = 'margin: rem(20px) em(12px);';
-  var output = 'margin: 20px 0.75em;\nmargin: 1.25rem 0.75em;';
+  var output = 'margin: 20px 0.75em;margin: 1.25rem 0.75em;';
   return runPlugin(t, input, output, options);
 });
 
