@@ -67,6 +67,12 @@ test('Change negative value', function(t) {
   return runPlugin(t, input, output);
 });
 
+test('Use calc', function(t) {
+  var input = 'font-size: calc(700% - rem(20px));';
+  var output = 'font-size: calc(700% - 1.25rem);';
+  return runPlugin(t, input, output);
+});
+
 test('Change with fallback', function(t) {
   var options = {
     fallback: true
