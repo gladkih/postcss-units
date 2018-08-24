@@ -99,3 +99,9 @@ test('Size equal 0', function(t) {
   var output = 'font-size: 21rem;';
   return runPlugin(t, input, output, options);
 });
+
+test('List of values', function(t) {
+  var input = 'margin: rem(20 0 10 auto);';
+  var output = 'margin: 1.25rem 0 0.625rem auto;';
+  return runPlugin(t, input, output);
+});
