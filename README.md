@@ -13,7 +13,7 @@ Conversion from pixels into em or rem, depending on wrapper of value.
 ```css
 // input
 .title {
-    margin: -10px .5em;
+    margin: rem(-10px 8px);
     padding: 15px;
     font-size: rem(14px);
     line-height: rem(20);
@@ -21,7 +21,7 @@ Conversion from pixels into em or rem, depending on wrapper of value.
 
 // output
 .title {
-    margin: -10px .5em;
+    margin: -0.625rem 0.5rem;
     padding: 15px;
     font-size: 0.88rem;
     line-height: 1.25rem;
