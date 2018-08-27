@@ -23,33 +23,67 @@ function postcssUnits(options) {
         return;
       }
 
-      var fallback = false;
-
       var parsedValue = valueParser(decl.value).walk(function(node) {
         if (!isValidFunction(node)) {
           return;
         }
 
-        var value = valueParser.unit(node.nodes[0].value);
-        if (!isValidUnit(value)) {
-          return;
-        }
-
-        var type = node.value;
-        var number = Number(value.number);
-        var size = convert(number, options);
         node.type = 'word';
-        node.value = size + type;
+        const { nodes } = node;
 
-        if (options.fallback && type === 'rem') {
-          node.fallback = value.number + value.unit;
-          fallback = true;
-        }
+        // Filter out invalid values
+        const filteredNodes = nodes.filter((item) =>
+          isValidUnit(item) && item.type !== 'space');
+
+        // Collect fallback value(s)
+        node.fallback = filteredNodes.reduce((acc, item) => {
+          const { value: propValue } = item;
+          const { value: units } = node;
+
+          const parsedPropValue = valueParser.unit(propValue);
+          if (isValidUnit(parsedPropValue)) {
+            const { number: value, unit } = parsedPropValue;
+
+            if (options.fallback && units === 'rem') {
+              return `${acc} ${value}${unit}`;
+            }
+          }
+
+          return acc;
+        }, '')
+          .trim();
+
+        // Process value(s)
+        node.value = filteredNodes.map((item) => {
+          const { value: propValue } = item;
+          const { value: units } = node;
+
+          const parsedPropValue = valueParser.unit(propValue);
+          if (!isValidUnit(parsedPropValue)) {
+            return `${decl.value}`;
+          }
+
+          const { number: value } = parsedPropValue;
+          const number = Number(value);
+
+          // Don't process `0` values
+          if (number === 0) {
+            return `${number}`;
+          }
+
+          // Don't process `auto`
+          if (propValue === 'auto') {
+            return `${propValue}`;
+          }
+
+          return `${convert(number, options)}${units}`.trim();
+        })
+          .join(' ').trim();
       });
 
       decl.value = parsedValue.toString();
 
-      if (fallback) {
+      if (options.fallback) {
         decl.cloneBefore({
           value: parsedValue.walk(function(node) {
             if (node.fallback) {
@@ -68,8 +102,8 @@ function isValidFunction(node) {
     rem: true
   };
   return node.type === 'function' &&
-         functions[node.value] &&
-         node.nodes[0].type === 'word';
+    functions[node.value] &&
+    node.nodes[0].type === 'word';
 }
 
 function isValidUnit(value) {
